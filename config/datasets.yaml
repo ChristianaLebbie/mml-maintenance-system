@@ -1,0 +1,282 @@
+datasets:
+  pm_spot_check:
+    source_type: excel
+    source_filename: PM Spot Check.xlsx
+    mapping:
+      machine_id: Asset Name
+      equipment_category: Category
+      manufacturer: Manufacturer
+      criticality: Criticality Classification
+      overdue_pms: Overdue PMs
+      overdue_wos: Overdue WOs
+      total_completed_pms: Total Completed PMs
+      total_completed_wos: Total Completed WOs
+      downtime_minutes: Total time spent on PMs in minutes
+      total_cost: null
+      last_completed_pm: Last Completed PM
+      last_completed_wo: Last Completed WO
+      failure_label: null
+  cmms_sample_test_dbg:
+    source_type: csv
+    source_filename: cmms_sample_dataset.csv
+    mapping:
+      machine_id: Asset ID
+      equipment_category: Equipment Category
+      manufacturer: Manufacturer
+      criticality: Criticality
+      overdue_pms: Overdue PMs
+      overdue_wos: Overdue WOs
+      total_completed_pms: Total Completed PMs
+      total_completed_wos: Total Completed WOs
+      downtime_minutes: Downtime
+      total_cost: Total Cost
+      last_completed_pm: Last Completed PM
+      last_completed_wo: Last Completed WO
+      failure_label: null
+      timestamp: null
+      voltage: null
+      rotation: null
+      pressure: null
+      vibration: null
+  synthetic_telemetry_dbg:
+    source_type: csv
+    source_filename: synthetic_sensor_telemetry.csv
+    mapping:
+      machine_id: machine_id
+      equipment_category: equipment_category
+      manufacturer: manufacturer
+      criticality: null
+      overdue_pms: null
+      overdue_wos: null
+      total_completed_pms: null
+      total_completed_wos: null
+      downtime_minutes: null
+      total_cost: null
+      last_completed_pm: null
+      last_completed_wo: null
+      failure_label: failure_event
+      timestamp: timestamp
+      voltage: voltage
+      rotation: rotation
+      pressure: pressure
+      vibration: vibration
+  synthetic_telemetry_dbg2:
+    source_type: csv
+    source_filename: synthetic_sensor_telemetry.csv
+    mapping:
+      machine_id: machine_id
+      equipment_category: equipment_category
+      manufacturer: manufacturer
+      criticality: null
+      overdue_pms: null
+      overdue_wos: null
+      total_completed_pms: null
+      total_completed_wos: null
+      downtime_minutes: null
+      total_cost: null
+      last_completed_pm: null
+      last_completed_wo: null
+      failure_label: failure_event
+      timestamp: timestamp
+      voltage: voltage
+      rotation: rotation
+      pressure: pressure
+      vibration: vibration
+  synthetic_telemetry_dbg3:
+    source_type: csv
+    source_filename: synthetic_sensor_telemetry.csv
+    mapping:
+      machine_id: machine_id
+      equipment_category: equipment_category
+      manufacturer: manufacturer
+      criticality: null
+      overdue_pms: null
+      overdue_wos: null
+      total_completed_pms: null
+      total_completed_wos: null
+      downtime_minutes: null
+      total_cost: null
+      last_completed_pm: null
+      last_completed_wo: null
+      failure_label: failure_event
+      timestamp: timestamp
+      voltage: voltage
+      rotation: rotation
+      pressure: pressure
+      vibration: vibration
+  cmms_sample_test_dbg2:
+    source_type: csv
+    source_filename: cmms_sample_dataset.csv
+    mapping:
+      machine_id: Asset ID
+      equipment_category: Equipment Category
+      manufacturer: Manufacturer
+      criticality: Criticality
+      overdue_pms: Overdue PMs
+      overdue_wos: Overdue WOs
+      total_completed_pms: Total Completed PMs
+      total_completed_wos: Total Completed WOs
+      downtime_minutes: Downtime
+      total_cost: Total Cost
+      last_completed_pm: Last Completed PM
+      last_completed_wo: Last Completed WO
+      failure_label: null
+      timestamp: null
+      voltage: null
+      rotation: null
+      pressure: null
+      vibration: null
+  synthetic_telemetry_dbg4:
+    source_type: csv
+    source_filename: synthetic_sensor_telemetry.csv
+    mapping:
+      machine_id: machine_id
+      equipment_category: equipment_category
+      manufacturer: manufacturer
+      criticality: null
+      overdue_pms: null
+      overdue_wos: null
+      total_completed_pms: null
+      total_completed_wos: null
+      downtime_minutes: null
+      total_cost: null
+      last_completed_pm: null
+      last_completed_wo: null
+      failure_label: failure_event
+      timestamp: timestamp
+      voltage: voltage
+      rotation: rotation
+      pressure: pressure
+      vibration: vibration
+  cmms_sample_test_final:
+    source_type: csv
+    source_filename: cmms_sample_dataset.csv
+    mapping:
+      machine_id: Asset ID
+      equipment_category: Equipment Category
+      manufacturer: Manufacturer
+      criticality: Criticality
+      overdue_pms: Overdue PMs
+      overdue_wos: Overdue WOs
+      total_completed_pms: Total Completed PMs
+      total_completed_wos: Total Completed WOs
+      downtime_minutes: Downtime
+      total_cost: Total Cost
+      last_completed_pm: Last Completed PM
+      last_completed_wo: Last Completed WO
+      failure_label: null
+      timestamp: null
+      voltage: null
+      rotation: null
+      pressure: null
+      vibration: null
+  synthetic_telemetry_final:
+    source_type: csv
+    source_filename: synthetic_sensor_telemetry.csv
+    mapping:
+      machine_id: machine_id
+      equipment_category: equipment_category
+      manufacturer: manufacturer
+      criticality: null
+      overdue_pms: null
+      overdue_wos: null
+      total_completed_pms: null
+      total_completed_wos: null
+      downtime_minutes: null
+      total_cost: null
+      last_completed_pm: null
+      last_completed_wo: null
+      failure_label: failure_event
+      timestamp: timestamp
+      voltage: voltage
+      rotation: rotation
+      pressure: pressure
+      vibration: vibration
+  complete_sample_dbg:
+    source_type: csv
+    source_filename: complete_mining_dataset.csv
+    mapping:
+      machine_id: Asset ID
+      equipment_category: Equipment Category
+      manufacturer: Manufacturer
+      criticality: Criticality
+      overdue_pms: Overdue PMs
+      overdue_wos: Overdue WOs
+      total_completed_pms: Total Completed PMs
+      total_completed_wos: Total Completed WOs
+      downtime_minutes: Downtime
+      total_cost: Total Cost
+      last_completed_pm: Last Completed PM
+      last_completed_wo: Last Completed WO
+      failure_label: Failure Event
+      timestamp: Reading Time
+      voltage: Voltage
+      rotation: Rotation
+      pressure: Pressure
+      vibration: Vibration
+  complete_sample_dbg2:
+    source_type: csv
+    source_filename: complete_mining_dataset.csv
+    mapping:
+      machine_id: Asset ID
+      equipment_category: Equipment Category
+      manufacturer: Manufacturer
+      criticality: Criticality
+      overdue_pms: Overdue PMs
+      overdue_wos: Overdue WOs
+      total_completed_pms: Total Completed PMs
+      total_completed_wos: Total Completed WOs
+      downtime_minutes: Downtime
+      total_cost: Total Cost
+      last_completed_pm: Last Completed PM
+      last_completed_wo: Last Completed WO
+      failure_label: Failure Event
+      timestamp: Reading Time
+      voltage: Voltage
+      rotation: Rotation
+      pressure: Pressure
+      vibration: Vibration
+  complete_sample_dbg3:
+    source_type: csv
+    source_filename: complete_mining_dataset.csv
+    mapping:
+      machine_id: Asset ID
+      equipment_category: Equipment Category
+      manufacturer: Manufacturer
+      criticality: Criticality
+      overdue_pms: Overdue PMs
+      overdue_wos: Overdue WOs
+      total_completed_pms: Total Completed PMs
+      total_completed_wos: Total Completed WOs
+      downtime_minutes: Downtime
+      total_cost: Total Cost
+      last_completed_pm: Last Completed PM
+      last_completed_wo: Last Completed WO
+      failure_label: Failure Event
+      timestamp: Reading Time
+      voltage: Voltage
+      rotation: Rotation
+      pressure: Pressure
+      vibration: Vibration
+  complete_mining_dataset:
+    source_type: csv
+    source_filename: complete_mining_dataset.csv
+    mapping:
+      machine_id: Asset ID
+      equipment_category: Equipment Category
+      manufacturer: Manufacturer
+      criticality: Criticality
+      overdue_pms: Overdue PMs
+      overdue_wos: Overdue WOs
+      total_completed_pms: Total Completed PMs
+      total_completed_wos: Total Completed WOs
+      downtime_minutes: Downtime
+      total_cost: Total Cost
+      last_completed_pm: Last Completed PM
+      last_completed_wo: Last Completed WO
+      failure_label: Failure Event
+      timestamp: Reading Time
+      voltage: Voltage
+      rotation: Rotation
+      pressure: Pressure
+      vibration: Vibration

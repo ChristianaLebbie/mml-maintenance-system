@@ -1,0 +1,66 @@
+application:
+  name: "Explainable Intervention Prioritization System"
+  short_name: "EIPS"
+  description: >
+    CMMS-based decision-support system for mining equipment maintenance:
+    explainable intervention prioritization plus peer-adjusted anomaly
+    analysis, using historical/sample data and designed for future
+    real-time integration.
+
+data:
+  default_source: excel
+  supported_extensions: [".xlsx", ".xls", ".csv"]
+  raw_excel_dir: "data/raw/excel"
+  raw_csv_dir: "data/raw/csv"
+  raw_azure_dir: "data/raw/azure"
+  raw_phm_dir: "data/raw/phm2012"
+  interim_dir: "data/interim"
+  processed_dir: "data/processed"
+  uploads_dir: "data/uploads"
+  powerbi_export_dir: "data/exports/powerbi"
+
+prediction:
+  # Confirmed from actual Data Repo inspection: no continuous sensor
+  # telemetry and no populated failure/breakdown log exist, so the primary
+  # task is cross-sectional CMMS-based intervention-priority classification
+  # (asset attributes + PM/WO compliance metrics -> intervention priority),
+  # not a time-horizon "failure within H hours" prediction. horizon_hours is
+  # kept here, unused by default, in case future periodic snapshots or a
+  # historian export make time-series framing feasible later.
+  task_type: intervention_priority_classification
+  horizon_hours: 24
+  supported_horizons_hours: [24, 48]
+
+features:
+  rolling_windows: [3, 6, 12, 24]
+  groups:
+    - raw
+    - lags
+    - temporal
+    - statistical
+    - events
+    - frequency
+    - combined
+
+validation:
+  train_ratio: 0.70
+  validation_ratio: 0.15
+  test_ratio: 0.15
+  strategy: chronological
+
+intervention_priority:
+  # Left null intentionally: thresholds must be derived from validation
+  # results, not invented ahead of time. See docs/architecture.md.
+  watch_threshold: null
+  high_threshold: null
+
+model:
+  active_version: null
+
+database:
+  url_env_var: DATABASE_URL
+  default_url: "sqlite:///database/predictive_maintenance.db"
+
+logging:
+  dir: "logs"
+  level: "INFO"

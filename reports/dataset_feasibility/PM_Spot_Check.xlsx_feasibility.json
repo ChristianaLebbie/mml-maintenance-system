@@ -1,0 +1,48 @@
+{
+  "source_dataset": "PM Spot Check.xlsx",
+  "row_count": 4425,
+  "column_count": 14,
+  "machine_count": 4425,
+  "records_per_machine_mean": 1.0,
+  "duplicate_row_count": 0,
+  "missingness_pct": {
+    "machine_id": 0.0,
+    "equipment_category": 0.0,
+    "manufacturer": 0.0,
+    "criticality": 0.0,
+    "overdue_pms": 0.0,
+    "overdue_wos": 0.0,
+    "total_completed_pms": 0.0,
+    "total_completed_wos": 0.0,
+    "downtime_minutes": 0.0,
+    "total_cost": 0.0,
+    "last_completed_pm": 49.9,
+    "last_completed_wo": 82.03,
+    "failure_label": 100.0,
+    "source_dataset": 0.0
+  },
+  "date_fields_present": [
+    "last_completed_pm",
+    "last_completed_wo"
+  ],
+  "date_range": {
+    "last_completed_pm": [
+      "2025-02-07",
+      "2025-06-16"
+    ],
+    "last_completed_wo": [
+      "2025-01-23",
+      "2025-06-16"
+    ]
+  },
+  "is_single_snapshot": true,
+  "has_failure_label": false,
+  "supported_tasks": [
+    "maintenance_risk_classification",
+    "anomaly_detection_across_machines"
+  ],
+  "limitations": [
+    "No populated failure_label column -- binary/multi-class failure classification is not supported without fabricating a label.",
+    "Data is a single point-in-time snapshot (~1 row per machine) -- time-series / near-term failure-horizon prediction is not supported unless multiple dated snapshots of the same machines are supplied."
+  ]
+}

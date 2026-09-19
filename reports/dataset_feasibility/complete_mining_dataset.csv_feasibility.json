@@ -1,0 +1,52 @@
+{
+  "source_dataset": "complete_mining_dataset.csv",
+  "row_count": 72000,
+  "column_count": 19,
+  "machine_count": 25,
+  "records_per_machine_mean": 2880.0,
+  "duplicate_row_count": 0,
+  "missingness_pct": {
+    "machine_id": 0.0,
+    "equipment_category": 0.0,
+    "manufacturer": 0.0,
+    "criticality": 0.0,
+    "overdue_pms": 0.0,
+    "overdue_wos": 0.0,
+    "total_completed_pms": 0.0,
+    "total_completed_wos": 0.0,
+    "downtime_minutes": 0.0,
+    "total_cost": 0.0,
+    "last_completed_pm": 0.0,
+    "last_completed_wo": 0.0,
+    "failure_label": 0.0,
+    "timestamp": 0.0,
+    "voltage": 0.0,
+    "rotation": 0.0,
+    "pressure": 0.0,
+    "vibration": 0.0,
+    "source_dataset": 0.0
+  },
+  "date_fields_present": [
+    "last_completed_pm",
+    "last_completed_wo"
+  ],
+  "date_range": {
+    "last_completed_pm": [
+      "2025-04-08",
+      "2026-08-24"
+    ],
+    "last_completed_wo": [
+      "2026-02-04",
+      "2026-08-22"
+    ]
+  },
+  "is_single_snapshot": false,
+  "has_failure_label": true,
+  "supported_tasks": [
+    "binary_failure_classification",
+    "maintenance_risk_classification",
+    "time_series_analysis",
+    "anomaly_detection_across_machines"
+  ],
+  "limitations": []
+}

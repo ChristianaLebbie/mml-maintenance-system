@@ -1,0 +1,87 @@
+{
+  "version": "final1",
+  "model_type": "decision_tree",
+  "dataset_name": "cmms_sample_test_final",
+  "feature_columns": [
+    "total_completed_pms",
+    "total_completed_wos",
+    "total_cost",
+    "days_since_last_completed_pm",
+    "days_since_last_completed_wo",
+    "equipment_category_Ball Mill",
+    "equipment_category_Compressor",
+    "equipment_category_Conveyor",
+    "equipment_category_Cyclone",
+    "equipment_category_Flow Transmitter",
+    "equipment_category_Gyratory Crusher",
+    "equipment_category_Level Transmitter",
+    "equipment_category_Motor",
+    "equipment_category_Pressure Transmitter",
+    "equipment_category_Pump",
+    "equipment_category_SAG Mill",
+    "equipment_category_Screen",
+    "equipment_category_Transformer",
+    "manufacturer_ABB",
+    "manufacturer_FLSmidth",
+    "manufacturer_Gardner Denver",
+    "manufacturer_Grundfos",
+    "manufacturer_Metso Outotec",
+    "manufacturer_SKF",
+    "manufacturer_Sandvik",
+    "manufacturer_Schneider Electric",
+    "manufacturer_Siemens",
+    "manufacturer_Weir Minerals",
+    "criticality_Critical",
+    "criticality_High",
+    "criticality_Low",
+    "criticality_Medium"
+  ],
+  "watch_threshold": 0.3316410244309154,
+  "high_threshold": 0.4842890178866393,
+  "metrics": {
+    "accuracy": 0.8333333333333334,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "roc_auc": 0.43103448275862066,
+    "pr_auc": 0.03333333333333333,
+    "confusion_matrix": [
+      [
+        25,
+        4
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "false_positives": 4,
+    "false_negatives": 1,
+    "roc_curve": {
+      "fpr": [
+        0.0,
+        0.13793103448275862,
+        1.0
+      ],
+      "tpr": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "pr_curve": {
+      "precision": [
+        0.03333333333333333,
+        0.0,
+        1.0
+      ],
+      "recall": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "model_artifact_path": "C:\\Users\\Kargbo1629217\\Desktop\\Agibu_Kargbo\\Ama\\models\\trained\\decision_tree_final1.joblib",
+  "preprocessor_path": "C:\\Users\\Kargbo1629217\\Desktop\\Agibu_Kargbo\\Ama\\models\\preprocessors\\encoder_final1.joblib"
+}

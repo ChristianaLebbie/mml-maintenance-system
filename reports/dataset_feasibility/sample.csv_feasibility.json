@@ -1,0 +1,40 @@
+{
+  "source_dataset": "sample.csv",
+  "row_count": 3,
+  "column_count": 19,
+  "machine_count": 2,
+  "records_per_machine_mean": 1.5,
+  "duplicate_row_count": 0,
+  "missingness_pct": {
+    "machine_id": 0.0,
+    "equipment_category": 0.0,
+    "manufacturer": 0.0,
+    "criticality": 0.0,
+    "overdue_pms": 0.0,
+    "overdue_wos": 0.0,
+    "total_completed_pms": 0.0,
+    "total_completed_wos": 0.0,
+    "downtime_minutes": 0.0,
+    "total_cost": 0.0,
+    "last_completed_pm": 100.0,
+    "last_completed_wo": 100.0,
+    "failure_label": 100.0,
+    "timestamp": 100.0,
+    "voltage": 100.0,
+    "rotation": 100.0,
+    "pressure": 100.0,
+    "vibration": 100.0,
+    "source_dataset": 0.0
+  },
+  "date_fields_present": [],
+  "date_range": {},
+  "is_single_snapshot": false,
+  "has_failure_label": false,
+  "supported_tasks": [
+    "maintenance_risk_classification",
+    "anomaly_detection_across_machines"
+  ],
+  "limitations": [
+    "No populated failure_label column -- binary/multi-class failure classification is not supported without fabricating a label."
+  ]
+}

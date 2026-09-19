@@ -1,0 +1,68 @@
+# Explainable Intervention Prioritization System (EIPS)
+#
+# What's deliberately left OUT of version control, and why:
+#
+# 1. Real MML data. The connected dataset is a genuine Limble CMMS export
+#    (real asset registry + PM/work-order history from the mine site).
+#    Even in a *private* GitHub repository, that data would sit in the
+#    repo's history forever (every past commit, not just the latest
+#    files) and would be visible to anyone ever given access to the repo
+#    or invited as a Streamlit Cloud collaborator. The safer pattern is:
+#    the code and the trained model ship in the repo, and the real data
+#    is (re)loaded straight into the hosted database after deployment,
+#    either through the app's own "Import Dataset" page or directly into
+#    the hosted Postgres database -- never through git.
+#
+# 2. The local SQLite database file. It holds real predictions, machine
+#    records, and -- once the login system is used -- account username/
+#    password-hash rows. None of that belongs in source control, and once
+#    the app is hosted it uses a separate Postgres database anyway (see
+#    docs/deployment_guide.md), so this file is purely a local-dev
+#    convenience.
+#
+# 3. Secrets. `.env` and `.streamlit/secrets.toml` hold the real
+#    DATABASE_URL (with a password in it) once you have one. Only the
+#    *.example templates are committed.
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Virtual environments ---
+venv/
+.venv/
+env/
+
+# --- Secrets / environment ---
+.env
+.streamlit/secrets.toml
+
+# --- Local database ---
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+
+# --- Real / uploaded data (see note above) ---
+data/raw/
+data/interim/
+data/processed/
+data/uploads/
+data/exports/
+
+# --- Any bundled/backup data archive -- e.g. "Data Repo.zip", a full
+#     backup of the original real dataset sitting at the project root.
+#     Same reasoning as the data/ exclusions above: never belongs in git.
+*.zip
+
+# --- Logs ---
+logs/*.log
+
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

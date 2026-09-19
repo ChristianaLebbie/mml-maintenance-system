@@ -1,0 +1,61 @@
+# Model training configuration.
+# These are starting points only — actual hyperparameters used for the
+# thesis results must come from real Optuna trials / validation runs,
+# recorded under reports/experiments/.
+
+random_seed: 42
+
+baselines:
+  logistic_regression:
+    max_iter: 1000
+    class_weight: balanced
+  decision_tree:
+    max_depth: null
+    class_weight: balanced
+
+random_forest:
+  n_estimators: 300
+  max_depth: null
+  min_samples_split: 2
+  min_samples_leaf: 1
+  max_features: "sqrt"
+  class_weight: balanced
+
+xgboost:
+  n_estimators: 300
+  max_depth: 6
+  learning_rate: 0.1
+  subsample: 0.8
+  colsample_bytree: 0.8
+  min_child_weight: 1
+  gamma: 0
+  reg_alpha: 0
+  reg_lambda: 1
+  optuna:
+    n_trials: 50
+    search_space:
+      n_estimators: [100, 800]
+      max_depth: [3, 12]
+      learning_rate: [0.01, 0.3]
+      subsample: [0.5, 1.0]
+      colsample_bytree: [0.5, 1.0]
+      min_child_weight: [1, 10]
+      gamma: [0, 5]
+      reg_alpha: [0, 5]
+      reg_lambda: [0, 5]
+
+sequence_model:
+  type: "LSTM"  # or "GRU"
+  sequence_length: 24
+  hidden_units: 64
+  dropout: 0.2
+  learning_rate: 0.001
+  batch_size: 32
+  epochs: 50
+  early_stopping_patience: 5
+
+imbalance:
+  strategy: "class_weight"  # class_weight | scale_pos_weight | smote
+  smote:
+    enabled: false
+    k_neighbors: 5
