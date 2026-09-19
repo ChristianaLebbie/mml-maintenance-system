@@ -19,6 +19,7 @@ import streamlit as st
 from config.settings import APP_NAME
 from database.database import get_session, init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from database.models import Alert, Machine, ModelVersion, Prediction
 from src.utils.logger import get_logger
 
@@ -26,11 +27,13 @@ logger = get_logger(__name__)
 
 st.set_page_config(
     page_title=APP_NAME,
+    page_icon="⛏️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 init_db()
 require_login()
+inject_global_css()
 
 
 def render_disclaimer() -> None:
@@ -45,7 +48,11 @@ def render_disclaimer() -> None:
 
 
 def main() -> None:
-    st.title(APP_NAME)
+    render_page_header(
+        APP_NAME,
+        icon="⛏️",
+        subtitle="Explainable, peer-adjusted maintenance intervention prioritization for mining equipment.",
+    )
     render_disclaimer()
 
     st.markdown(

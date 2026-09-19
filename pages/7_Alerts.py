@@ -15,14 +15,16 @@ import streamlit as st
 from config.settings import APP_NAME
 from database.database import get_session, init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from database.models import Alert, Machine
 from src.utils.streamlit_helpers import list_machine_identifiers_cached
 
-st.set_page_config(page_title=f"Alerts - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"Alerts - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("Alerts")
+render_page_header("Alerts", icon="🔔")
 
 machine_identifiers = ["All"] + sorted(list_machine_identifiers_cached())
 

@@ -13,16 +13,18 @@ import streamlit as st
 from config.settings import APP_NAME, APPLICATION_CONFIG
 from database.database import get_session, init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from database.models import Dataset, ModelVersion
 from database.repositories.user_repository import UserRepository
 from src.services.auth_service import create_user
 from src.utils.streamlit_helpers import clear_all_caches
 
-st.set_page_config(page_title=f"System Information - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"System Information - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("System Information")
+render_page_header("System Information", icon="⚙️")
 
 st.info(
     "This application is a research predictive-maintenance decision-support "

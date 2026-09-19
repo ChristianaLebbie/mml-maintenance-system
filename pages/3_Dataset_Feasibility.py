@@ -15,17 +15,19 @@ import streamlit as st
 from config.settings import APP_NAME, PATHS
 from database.database import get_session, init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from database.models import Dataset
 from src.feasibility.report_generator import load_report_json
 from src.services.dataset_service import delete_dataset
 from src.utils.streamlit_helpers import clear_all_caches
 from src.utils.viz_theme import sequential_blue_scale
 
-st.set_page_config(page_title=f"Dataset Feasibility - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"Dataset Feasibility - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("Dataset Feasibility")
+render_page_header("Dataset Feasibility", icon="🔍")
 
 with get_session() as session:
     datasets = session.query(Dataset).order_by(Dataset.imported_at.desc()).all()

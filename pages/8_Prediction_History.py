@@ -15,13 +15,15 @@ import streamlit as st
 from config.settings import APP_NAME
 from database.database import get_session, init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from database.models import Machine, Prediction
 
-st.set_page_config(page_title=f"Prediction History - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"Prediction History - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("Prediction History")
+render_page_header("Prediction History", icon="🕒")
 
 with get_session() as session:
     rows = (

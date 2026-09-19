@@ -20,6 +20,7 @@ import streamlit as st
 from config.settings import APP_NAME
 from database.database import init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from src.services.prediction_service import run_and_save_predictions
 from src.utils.streamlit_helpers import (
     list_dataset_names_cached,
@@ -28,11 +29,12 @@ from src.utils.streamlit_helpers import (
     make_progress_callback,
 )
 
-st.set_page_config(page_title=f"Run Prediction - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"Run Prediction - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("Run Prediction")
+render_page_header("Run Prediction", icon="🎯")
 st.caption(
     "Component III (pipeline demonstration): this classifier is trained on a "
     "compliance-derived proxy label, not an engineering-validated intervention "

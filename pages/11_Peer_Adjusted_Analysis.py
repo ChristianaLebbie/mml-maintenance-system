@@ -26,15 +26,17 @@ import streamlit as st
 from config.settings import APP_NAME
 from database.database import init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from src.analysis.peer_adjusted import build_peer_adjusted_view, has_peer_adjusted_data
 from src.utils.streamlit_helpers import list_dataset_names_cached, load_processed_dataset_cached
 from src.utils.viz_theme import CATEGORICAL
 
-st.set_page_config(page_title=f"Peer-Adjusted Analysis - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"Peer-Adjusted Analysis - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("Peer-Adjusted Analysis")
+render_page_header("Peer-Adjusted Analysis", icon="🧭")
 st.caption(
     "Component II: unsupervised pattern discovery and peer-adjusted anomaly "
     "detection -- each asset compared against similar peers, kept separate "

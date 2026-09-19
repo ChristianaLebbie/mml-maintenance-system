@@ -18,14 +18,16 @@ import streamlit as st
 from config.settings import APP_NAME, PATHS
 from database.database import get_session, init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from database.models import ModelVersion
 from src.utils.viz_theme import MODEL_COLORS, MODEL_ORDER, sequential_blue_scale
 
-st.set_page_config(page_title=f"Model Performance - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"Model Performance - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("Model Performance")
+render_page_header("Model Performance", icon="📈")
 st.caption(
     "Component III (pipeline demonstration): these metrics show the classifier "
     "learned its compliance-derived proxy label well -- they are not evidence "

@@ -16,13 +16,15 @@ import streamlit as st
 from config.settings import APP_NAME
 from database.database import get_session, init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from database.models import Machine, Prediction, PredictionExplanation
 
-st.set_page_config(page_title=f"Explainability - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"Explainability - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("Explainability")
+render_page_header("Explainability", icon="💡")
 st.caption(
     "Component III (pipeline demonstration): these SHAP explanations describe "
     "the classifier's own reasoning, which is only as sound as its proxy "

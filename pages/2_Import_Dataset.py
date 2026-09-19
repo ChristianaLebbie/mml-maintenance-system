@@ -17,6 +17,7 @@ import datetime
 from config.settings import APP_NAME, PATHS
 from database.database import init_db
 from src.utils.auth_ui import require_login
+from src.utils.theme import inject_global_css, render_page_header
 from src.ingestion.csv_loader import CSVDataSource
 from src.ingestion.excel_loader import ExcelDataSource
 from src.ingestion.mapper import INTERNAL_FIELDS, suggest_mapping, validate_mapping
@@ -25,11 +26,12 @@ from src.services.dataset_service import import_and_prepare
 from src.services.model_service import train_and_activate
 from src.utils.streamlit_helpers import clear_all_caches, make_progress_callback
 
-st.set_page_config(page_title=f"Import Dataset - {APP_NAME}", layout="wide")
+st.set_page_config(page_title=f"Import Dataset - {APP_NAME}", page_icon="⛏️", layout="wide")
 init_db()
 require_login()
+inject_global_css()
 
-st.title("Import Dataset")
+render_page_header("Import Dataset", icon="📂")
 st.caption(
     "Upload any mining-site Excel/CSV workbook -- an asset register, a CMMS "
     "export, or sensor telemetry. The original file is never modified -- a "
