@@ -17,8 +17,13 @@ imbalanced-learn==0.13.0
 # Explainable AI
 shap==0.46.0
 
-# Deep learning (sequence models)
-tensorflow==2.18.0
+# NOTE: tensorflow (used only by the optional LSTM/GRU sequence-model
+# training script, src/training/sequence_model.py -- a separate synthetic
+# demonstration track, never imported by app.py or any Streamlit page) is
+# deliberately left out of this file. It has no prebuilt wheel for newer
+# Python versions, which breaks the hosted deploy; install it locally with
+# `pip install tensorflow==2.18.0` only if you need to run that training
+# script yourself.
 
 # Web application
 streamlit==1.40.2
