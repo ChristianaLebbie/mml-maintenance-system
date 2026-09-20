@@ -1,3 +1,4 @@
+# cSpell:words CMMS crossentropy
 """LSTM/GRU sequence model (section 27) -- only meaningful for genuine
 per-machine time series. Not used for the real CMMS export (a single
 snapshot per machine has no sequence to model); built for the synthetic
@@ -9,16 +10,28 @@ label timestamp -- `build_sequences()` windows end at t using
 in (e.g. from construct_failure_within_horizon_label, which is allowed to
 look forward -- that's the label, not a feature). No future sensor reading
 is ever included in X.
+
+Uses X/y (capitalized) for feature/label arrays throughout, matching
+standard scikit-learn/Keras ML convention rather than PEP8 variable
+naming -- intentional, not a style oversight.
 """
+# pylint: disable=invalid-name
 
 from __future__ import annotations
 
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow import keras
 
 from config.settings import MODEL_CONFIG, RANDOM_SEED
+
+# `from tensorflow import keras` trips static checkers (Pylint E0611 /
+# Pylance reportMissingModuleSource) because TensorFlow loads `keras` as a
+# dynamic submodule that isn't visible to static analysis -- a well-known,
+# harmless false alarm (the code runs fine either way). Accessing it as an
+# attribute of the already-imported `tf` module, instead of importing it by
+# name directly, sidesteps that specific check.
+keras = tf.keras
 
 tf.random.set_seed(RANDOM_SEED)
 
@@ -61,7 +74,11 @@ def build_sequences(
     return np.stack(X_list), np.array(y_list), pd.Index(idx_list)
 
 
-def build_lstm_model(sequence_length: int, n_features: int, overrides: dict | None = None) -> keras.Model:
+def build_lstm_model(
+    sequence_length: int, n_features: int, overrides: dict | None = None
+) -> keras.Model:
+    """Build and compile an untrained LSTM/GRU binary classifier for
+    sequences of shape (sequence_length, n_features)."""
     cfg = {**MODEL_CONFIG["sequence_model"], **(overrides or {})}
     layer_cls = keras.layers.LSTM if cfg.get("type", "LSTM") == "LSTM" else keras.layers.GRU
 
@@ -88,6 +105,8 @@ def train_sequence_model(
     y_val: np.ndarray,
     overrides: dict | None = None,
 ) -> keras.Model:
+    """Train an LSTM/GRU model on (X_train, y_train), early-stopping on
+    (X_val, y_val), and return the fitted model."""
     cfg = {**MODEL_CONFIG["sequence_model"], **(overrides or {})}
     model = build_lstm_model(X_train.shape[1], X_train.shape[2], overrides)
 
@@ -113,4 +132,5 @@ def train_sequence_model(
 
 
 def predict_sequence_model(model: keras.Model, X: np.ndarray) -> np.ndarray:
+    """Return per-sequence predicted probabilities for X."""
     return model.predict(X, verbose=0).ravel()
