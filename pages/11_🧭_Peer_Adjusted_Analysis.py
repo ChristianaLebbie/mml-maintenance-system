@@ -25,13 +25,18 @@ import streamlit as st
 
 from config.settings import APP_NAME
 from database.database import init_db
-from src.utils.auth_ui import require_login
-from src.utils.theme import inject_global_css, render_page_header
 from src.analysis.peer_adjusted import build_peer_adjusted_view, has_peer_adjusted_data
-from src.utils.streamlit_helpers import list_dataset_names_cached, load_processed_dataset_cached
+from src.utils.auth_ui import require_login
+from src.utils.streamlit_helpers import (
+    list_dataset_names_cached,
+    load_processed_dataset_cached,
+)
+from src.utils.theme import inject_global_css, render_page_header
 from src.utils.viz_theme import CATEGORICAL
 
-st.set_page_config(page_title=f"Peer-Adjusted Analysis - {APP_NAME}", page_icon="⛏️", layout="wide")
+st.set_page_config(
+    page_title=f"Peer-Adjusted Analysis - {APP_NAME}", page_icon="⛏️", layout="wide"
+)
 init_db()
 require_login()
 inject_global_css()
@@ -58,7 +63,7 @@ if not has_peer_adjusted_data(df):
         "(Hierarchy_Level, Global_Anomaly_Score, Rank_Peer_Adjusted, and "
         "similar). Import a dataset that has been run through the offline "
         "peer-adjustment analysis first -- e.g. "
-        "`PM_Spot_Check_Analysis_Ready.xlsx` (\"PROCESS_PLANT\" sheet) -- "
+        '`PM_Spot_Check_Analysis_Ready.xlsx` ("PROCESS_PLANT" sheet) -- '
         "to see this view."
     )
     st.stop()
@@ -80,7 +85,9 @@ kpi_cols = st.columns(4)
 kpi_cols[0].metric("Assets in Dataset", len(view))
 kpi_cols[1].metric("Individually Scored Assets", len(scored))
 if "maintenance_pattern_cluster" in view.columns:
-    kpi_cols[2].metric("Pattern Clusters", view["maintenance_pattern_cluster"].nunique())
+    kpi_cols[2].metric(
+        "Pattern Clusters", view["maintenance_pattern_cluster"].nunique()
+    )
 if "hierarchy_level" in view.columns:
     kpi_cols[3].metric("Hierarchy Levels", view["hierarchy_level"].nunique())
 
@@ -96,7 +103,9 @@ if "maintenance_pattern_cluster" in view.columns:
         color="maintenance_pattern_cluster",
         color_discrete_sequence=CATEGORICAL,
     )
-    fig.update_layout(showlegend=False, yaxis_title=None, margin=dict(l=10, r=10, t=10, b=10))
+    fig.update_layout(
+        showlegend=False, yaxis_title=None, margin=dict(l=10, r=10, t=10, b=10)
+    )
     st.plotly_chart(fig, use_container_width=True)
 
 display_columns = [
@@ -124,17 +133,27 @@ if not scored.empty and "rank_peer_adjusted" in scored.columns:
         "would predict for overdue work orders -- worth a closer look even "
         "when its own intervention-priority score looks unremarkable."
     )
-    top_peer_adjusted = scored.dropna(subset=["rank_peer_adjusted"]).sort_values("rank_peer_adjusted").head(20)
-    st.dataframe(top_peer_adjusted[display_columns], use_container_width=True, hide_index=True)
+    top_peer_adjusted = (
+        scored.dropna(subset=["rank_peer_adjusted"])
+        .sort_values("rank_peer_adjusted")
+        .head(20)
+    )
+    st.dataframe(
+        top_peer_adjusted[display_columns], use_container_width=True, hide_index=True
+    )
 
 if not scored.empty and "rank_global_anomaly" in scored.columns:
     st.subheader("Most Anomalous Overall (global anomaly ranking)")
-    top_global = scored.dropna(subset=["rank_global_anomaly"]).sort_values("rank_global_anomaly").head(20)
+    top_global = (
+        scored.dropna(subset=["rank_global_anomaly"])
+        .sort_values("rank_global_anomaly")
+        .head(20)
+    )
     st.dataframe(top_global[display_columns], use_container_width=True, hide_index=True)
 
 with st.expander("Full peer-adjusted analysis table"):
     st.caption(
-        "Assets at an \"Area/System node\" or similar non-individual "
+        'Assets at an "Area/System node" or similar non-individual '
         "hierarchy level have no peer-adjusted score (NaN) -- the "
         "analysis only compares individual equipment items against "
         "their peers."
